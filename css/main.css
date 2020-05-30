@@ -1,0 +1,28 @@
+body{
+    background-color: white;
+}
+.jumbotron{
+    margin-top: 30px;
+    background-image: url("https://cdn.pixabay.com/photo/2016/03/09/09/28/bear-1245807__340.jpg");
+    background-size: cover;
+    color: whitesmoke;
+    
+}
+
+.center{
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+    text-align: center;
+    border: 2px solid red;
+     
+}
+img#detailImg{ 
+    border-bottom: 2px solid red;  
+    object-fit: cover;
+}
+#headerId{
+    background-color: rgb(46, 44, 39);
+    margin-bottom: 0;
+    color: white;
+}
