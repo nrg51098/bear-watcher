@@ -9,12 +9,13 @@ body{
     
 }
 
-.center{
+.myContainer{
     margin-left: auto;
     margin-right: auto;
     width: 300px;
     text-align: center;
     border: 2px solid red;
+    /* position: relative; */
      
 }
 img#detailImg{ 
@@ -25,4 +26,16 @@ img#detailImg{
     background-color: rgb(46, 44, 39);
     margin-bottom: 0;
     color: white;
+}
+#tally{
+    position: absolute;
+  bottom: 8px;
+  left: 116px;
+
+}
+.name{
+    text-align: center;
+}
+.container{
+    margin-top: 30px;
 }
