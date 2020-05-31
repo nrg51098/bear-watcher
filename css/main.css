@@ -39,3 +39,21 @@ img#detailImg{
 .container{
     margin-top: 30px;
 }
+span{
+    color: darkorange;
+}
+h1{
+    color: firebrick;
+}
+.Gold{
+    background-color: gold;
+    border-radius: 20px;
+}
+.Silver{
+    background-color: silver;
+    border-radius: 20px;
+}
+.Bronze{
+    background-color: brown;
+    border-radius: 20px;
+}

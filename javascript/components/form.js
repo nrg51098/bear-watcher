@@ -16,11 +16,13 @@ const addBearToCard=(e)=>{
         "name":bearName,
         "imgUrl":imgUrl,
         "fishCaught": 0,
-        "lastMessage": ""
-    }
+        "lastMessage": "",
+        "fishingHistory":[],
+        }
     let bearDataArray= bearData.getBearArray();
     bearDataArray.unshift(newBearObj);
     river.makeBearCards(bearDataArray);
+    console.log(newBearObj);
     
     
     e.preventDefault();
