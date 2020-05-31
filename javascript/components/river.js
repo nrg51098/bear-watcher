@@ -21,14 +21,19 @@ import bearData from "../helpers/data/bearData.js"
             </div>
             <div class="card-footer">
                 <div class="row">
-                <div class="col-6">
+                <div class="col-4">
                 <h6 class="">Fish Caught: ${bear.fishCaught}</h6>            
                 </div>
-                <div class="col-6">
+                <div class="col-8">
                 <button type="button" class="m-auto btn btn-outline-warning attemptButton"><i class="fab fa-tripadvisor"></i></button>
-                <button type="button" class="m-auto btn btn-outline-success successButton"><i class="fab fa-tripadvisor"></i></button>
-
+                <button type="button" class="m-auto btn btn-outline-success successButton"><i class="fas fa-fish"></i></button>
                 </div>
+                <div class="col-12 text-center">
+                <button type="button" class="m-auto btn btn-outline-danger btn-sm name showHistoryButton">Show History</button>
+                <div class="history"></div>
+                </div>
+
+                
                 </div>
             </div>          
             </div>
@@ -55,7 +60,9 @@ import bearData from "../helpers/data/bearData.js"
 
     const attachEvents =()=>{
         attachGenericEventListner("button.successButton", successFunction );
-        attachGenericEventListner("button.attemptButton", attemptFunction );  
+        attachGenericEventListner("button.attemptButton", attemptFunction ); 
+        attachGenericEventListner("button.showHistoryButton", historyFunction );  
+ 
             
     }
 
@@ -76,7 +83,10 @@ import bearData from "../helpers/data/bearData.js"
     
         const bearIndex= bearDataArray.findIndex(bear => bear.id === bearId);
         bearDataArray[bearIndex].fishCaught += 1; 
-        bearDataArray[bearIndex].lastMessage = "Caught one YAY !!!"  
+        bearDataArray[bearIndex].lastMessage = "Caught one YAY !!!" 
+        bearDataArray[bearIndex].fishingHistory.push({"time":`${Date.now()}`, "result": "Success"});
+        console.log(bearDataArray[bearIndex]);         
+        
         
         makeBearCards(bearDataArray);
     
@@ -91,13 +101,55 @@ import bearData from "../helpers/data/bearData.js"
         const bearId= e.target.closest(".bear-card").id;    
     
         const bearIndex= bearDataArray.findIndex(bear => bear.id === bearId);         
-        bearDataArray[bearIndex].lastMessage = "Boooo Try again !!!"  
-        
+        bearDataArray[bearIndex].lastMessage = "Boooo Try again !!!"
+        bearDataArray[bearIndex].fishingHistory.push({"time":`${Date.now()}`, "result": "Attempt"});
+        console.log(bearDataArray[bearIndex]);
+
         makeBearCards(bearDataArray);
     
         e.preventDefault();
     
             
+        }
+
+        const historyFunction=(e)=>{  
+            
+            let bearDataArray= bearData.getBearArray();
+            const bearId= e.target.closest(".bear-card").id;  
+            const bearIndex= bearDataArray.findIndex(bear => bear.id === bearId);
+            const shortVar=bearDataArray[bearIndex].fishingHistory;
+            let domString ="";
+            for (let i = 0; i < shortVar.length; i++) {
+                domString += `
+                <div class="row mt-2">
+                <div class="col-6">
+                <small>${shortVar[i].time}</small>
+                </div>
+                <div class="col-6">
+                <small>${shortVar[i].result}</small>
+                </div>
+                </div>
+                `;
+                
+            }
+        
+                         
+            
+            if(e.target.nextElementSibling.classList.contains("history")) {
+                e.target.nextElementSibling.innerHTML= domString;
+            }
+                
+            
+            // console.log(e.target.closest(".history"))
+
+            // const historyDiv= e.tareget.parentElement
+            // console.log(historyDiv);
+            // historyDiv.innerHTML=`<h1>asdfasdfasdf</h1>`;
+            
+            
+        
+            e.preventDefault();        
+                
         }
 
 

@@ -1,4 +1,5 @@
-import form from "./components/form.js"   
+import form from "./components/form.js"  
+import trophy from "./components/trophy.js" 
 
 
 
@@ -6,6 +7,7 @@ import form from "./components/form.js"
 
 const init =()=>{
     form.createNewBear();
+    document.querySelector(".trophyButton").addEventListener("click", trophy.findFatWinners)
 }
 
 
